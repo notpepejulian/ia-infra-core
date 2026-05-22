@@ -165,5 +165,3 @@ Cuando un repositorio de infraestructura ejecuta sus procesos, el flujo se rige 
     
 - **Eficiencia operativa:** Se elimina el tiempo perdido en el triaje inicial de errores comunes de infraestructura.
 
-
- 

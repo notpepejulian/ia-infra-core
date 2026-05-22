@@ -37,7 +37,7 @@ global:
 
 repositories:
   # Repositorio de Portfolio
-  - name: "Portfolio"
+  - name: "portfolio"
     owner: "notpepejulian"
     ai_features:
       pre_synth_audit: false      # Desactivado si es un sitio mayormente estático
@@ -46,7 +46,7 @@ repositories:
       model: "default"
 
   # Repositorio SecChat
-  - name: "SecChat"
+  - name: "secchat"
     owner: "notpepejulian"
     ai_features:
       pre_synth_audit: true      # Crítico: Analiza vulnerabilidades antes de fusionar PRs (Pág 1 y 2 del PDF)
@@ -55,7 +55,7 @@ repositories:
       model: "default"
 
   # Repositorios anteriores (Mantenidos como referencia)
-  - name: "CDK-AWS"
+  - name: "cdk-aws"
     owner: "notpepejulian"
     ai_features:
       pre_synth_audit: true      # Crítico: Analiza vulnerabilidades antes de fusionar PRs (Pág 1 y 2 del PDF)
