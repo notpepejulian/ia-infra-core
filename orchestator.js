@@ -111,13 +111,10 @@ const server = app.listen(PORT, () => {
   console.log(`${'═'.repeat(70)}\n`);
 });
 
-// 🛑 TRUCO MAESTRO: Forzar a Node.js a mantener hilos activos indefinidamente en Linux
 // Esto evita que recolectores de basura o cierres de sockets de clientes limpien el bucle de eventos.
 setInterval(() => {
   // Mantiene vivo el proceso de forma nativa sin consumir CPU
 }, 1 << 30);
-
-// Capturadores globales de errores para evitar caídas catastróficas
 process.on('unhandledRejection', (reason, promise) => {
   console.error('[SISTEMA] Rechazo no manejado en promesa:', reason);
 });
