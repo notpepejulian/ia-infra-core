@@ -1,0 +1,72 @@
+# ============================================================================
+# AI-CORE.YML — Gobernanza Centralizada de IA para Infraestructura
+# ============================================================================
+# Este archivo define qué capacidades de IA están activas para cada repositorio
+# satélite. El orquestador (orchestator.js) lo consume para decidir qué análisis
+# ejecutar ante cada evento de webhook recibido de GitHub.
+#
+# Equivalente local del AI-core.yaml descrito en la estrategia empresarial
+# (EPAM DIAL), adaptado a GitHub + Ollama.
+# ============================================================================
+
+models:
+  default: "qwen2.5-coder:7b"
+  vision: "qwen3-vl:latest"
+
+global:
+  ollama:
+    base_url: "http://localhost:11434"
+    model: "default"
+    timeout_ms: 300000            # 5 minutos de timeout para respuestas largas
+  ngrok:
+    tunnel_url: "https://backspin-folk-sanitary.ngrok-free.dev"
+    webhook_path: "/webhook"
+  github:
+    # Si se provee un PAT, el orquestador posteará los comentarios directamente
+    # en los PRs y commits de GitHub. Si no, solo loguea a consola.
+    pat_env_var: "GITHUB_TOKEN"
+
+# ============================================================================
+# Repositorios Satélites
+# ============================================================================
+# Cada entrada mapea un repositorio de GitHub a las capacidades de IA activas.
+# - pre_synth_audit: Auditoría de seguridad en PRs (CDK TypeScript)
+# - log_analysis:    Diagnóstico de fallos en GitHub Actions
+# - auto_mermaid:    Generación de diagramas Mermaid en eventos push
+# ============================================================================
+
+repositories:
+  # Repositorio de Portfolio 
+  - name: "portfolio"
+    owner: "notpepejulian"
+    ai_features:
+      pre_synth_audit: false      # Desactivado si es un sitio mayormente estático
+      log_analysis: true         # Útil si tienes pipelines de despliegue automatizados (GH Pages, Vercel, etc.)
+      auto_mermaid: true         # Activado para documentar visualmente la estructura de componentes
+      model: "default"
+
+  # Repositorio SecChat
+  - name: "secchat"
+    owner: "notpepejulian"
+    ai_features:
+      pre_synth_audit: true      # Crítico: Analiza vulnerabilidades antes de fusionar PRs (Pág 1 y 2 del PDF)
+      log_analysis: true         # Crítico: Diagnóstico inmediato de fallos de compilación o backend (Pág 2 del PDF)
+      auto_mermaid: true         # Genera diagramas de flujo de datos del chat de forma dinámica
+      model: "default"
+
+  # Repositorios anteriores (Mantenidos como referencia)
+  - name: "cdk-networking-stack"
+    owner: "notpepejulian"
+    ai_features:
+      pre_synth_audit: true
+      log_analysis: true
+      auto_mermaid: false
+      model: "default"
+
+  - name: "cdk-data-platform"
+    owner: "notpepejulian"
+    ai_features:
+      pre_synth_audit: true
+      log_analysis: false
+      auto_mermaid: true
+      model: "vision"
