@@ -36,8 +36,8 @@ global:
 # ============================================================================
 
 repositories:
-  # Repositorio de Portfolio 
-  - name: "portfolio"
+  # Repositorio de Portfolio
+  - name: "Portfolio"
     owner: "notpepejulian"
     ai_features:
       pre_synth_audit: false      # Desactivado si es un sitio mayormente estático
@@ -46,7 +46,7 @@ repositories:
       model: "default"
 
   # Repositorio SecChat
-  - name: "secchat"
+  - name: "SecChat"
     owner: "notpepejulian"
     ai_features:
       pre_synth_audit: true      # Crítico: Analiza vulnerabilidades antes de fusionar PRs (Pág 1 y 2 del PDF)
@@ -55,18 +55,11 @@ repositories:
       model: "default"
 
   # Repositorios anteriores (Mantenidos como referencia)
-  - name: "cdk-networking-stack"
+  - name: "CDK-AWS"
     owner: "notpepejulian"
     ai_features:
-      pre_synth_audit: true
-      log_analysis: true
-      auto_mermaid: false
+      pre_synth_audit: true      # Crítico: Analiza vulnerabilidades antes de fusionar PRs (Pág 1 y 2 del PDF)
+      log_analysis: true         # Crítico: Diagnóstico inmediato de fallos de compilación o backend (Pág 2 del PDF)
+      auto_mermaid: true         # Genera diagramas de flujo de datos del chat de forma dinámica
       model: "default"
 
-  - name: "cdk-data-platform"
-    owner: "notpepejulian"
-    ai_features:
-      pre_synth_audit: true
-      log_analysis: false
-      auto_mermaid: true
-      model: "vision"
